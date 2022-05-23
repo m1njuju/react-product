@@ -23,12 +23,16 @@ const ProductList = () => {
               // 선택되지 않은 id값을 가진 item은 다시 배열에 넣고,
               // 선택된 id값을 가진 item은 스프레드 연산자를 사용해서 안의 내용을 넣고
               // stock 값을 1 감소해서 넣는다
-              setItems(
-                items.map((i) =>
-                  i.id === item.id ? { ...i, stock: i.stock - 1 } : i
-                )
-              );
-              setWish(wish + 1);
+              if (item.stock !== 0) {
+                setItems(
+                  items.map((i) =>
+                    i.id === item.id ? { ...i, stock: i.stock - 1 } : i
+                  )
+                );
+                setWish(wish + 1);
+              }
+              // 위의 내용은 stock의 값이 0일 때도 계속 추가되고 감소한다.
+              // 0일 때 추가, 감소가 되지 않게 하려면 추가할 코드는?
             }}
           >
             추가
